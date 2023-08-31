@@ -1,0 +1,37 @@
+#!/usr/bin/env python3
+
+import sys
+
+def factorize_number(num):
+    """
+    Factors a given number into a product of two smaller numbers.
+    Args:
+        num (int): The number to factorize.
+    Returns:
+        str: The factorization in the format "n=p*q".
+    """
+    for i in range(2, num):
+        if num % i == 0:
+            return f"{num}={i}*{num // i}"
+    return f"{num}=1*{num}"
+
+
+def main(filename):
+    """
+    Main function to read the file and factorize the numbers.
+    Args:
+        filename (str): The name of the file containing the numbers.
+    """
+    with open(filename, 'r') as file:
+        for line in file:
+            num = int(line)
+            factorization = factorize_number(num)
+            print(factorization)
+
+
+if __name__ == "__main__":
+    if len(sys.argv) != 2:
+        sys.exit("Usage: factors <file>")
+    
+    filename = sys.argv[1]
+    main(filename)
